@@ -9,7 +9,7 @@ const exchange = "GestorEmprestimosCommand_exchange";
 
 module.exports = {
   sendFanout : function(emprestimo, eventType) {
-    amqp.connect('amqp://localhost', function(error0, connection) {
+    amqp.connect('amqp://srvbwpty:jT30ovrtxQanxJEh2qBNQ-p8mAzex7iy@cat.rmq.cloudamqp.com/srvbwpty', function(error0, connection) {
       if (error0) {
         throw error0;
       }

@@ -21,14 +21,9 @@ app.get('/', (req, res) => {
 require('./Route/emprestimoRoute.js')(app);
 
 let port = 3001;
-app.listen(port, () => {
- console.log('Servidor em execução no port: ' + port);
-});
-
-
+app.listen(process.env.PORT || port)
 
 const db ='mongodb://admin1:admin1@ds363098.mlab.com:63098/emprestimoscommand'
-
 
 mongoose
     .connect(db, { 
