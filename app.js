@@ -17,7 +17,6 @@ app.get('/', (req, res) => {
     res.json({"message": "Welcome to Gestor Emprestimos app"});
 });
 
-
 require('./Route/emprestimoRoute.js')(app);
 
 let port = 3001;
