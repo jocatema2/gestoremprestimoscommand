@@ -9,7 +9,6 @@ const UserEventSchema = mongoose.Schema({
       default: 'RequestCreate'
     },
   emprestimo: {
-      idEmp: String,
       inicio: Date,
       fim: Date,
       nomeUser: String,

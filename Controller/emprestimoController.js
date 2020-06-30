@@ -15,7 +15,6 @@ exports.create = (req, res) => {
 
     // Create a Emprestimo
     const emprestimo = new Emprestimo({
-        idEmp: req.body.idEmp,
         inicio: req.body.inicio,
         fim: req.body.fim,
         nomeUser: req.body.nomeUser,
@@ -24,34 +23,11 @@ exports.create = (req, res) => {
     });
 
     getUtilizador(emprestimo, function(info) {
-
-                          if(emprestimo.idEmp == '0') {
-                            getHexID((info.length+1).toString(), function(newId){
-                                emprestimo.idEmp = newId;
-                                console.log(emprestimo)
-                                Service.createEmprestimoPendente(emprestimo);
-                                return res.status(200).send({
-                                    message: emprestimo
-                                });
-                            });
-                          } else {
-                            console.log("Emprestimo ja existente");
-                            Service.createEmprestimoPendente(emprestimo);
-                            return res.status(200).send({
-                                message: emprestimo
-                            });
-                          }
-                });
-}
-
-function getHexID(id, callback){
-    var size = 24 - id.length;
-    var newId = '';
-    for(i=0; i< size; i++){
-        newId += '0';
-    }
-    newId += id;
-    callback(newId);
+        Service.createEmprestimoPendente(emprestimo);
+        return res.status(200).send({
+            message: emprestimo
+        });
+});
 }
 
 function getUtilizador(emprestimo, callback){

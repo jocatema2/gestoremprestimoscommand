@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const EmprestimoSchema= mongoose.Schema({
-    idEmp: String,
     inicio: Date,
     fim: Date,
     nomeUser: String,

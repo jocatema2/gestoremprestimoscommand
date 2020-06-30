@@ -29,7 +29,7 @@ module.exports = {
   createEmprestimoDefinitivo : function(response, estadoRecebido) {
 
     var emprestimo = new Emprestimo({
-        idEmp: response._id,
+        _id: response._id,
         inicio: response.inicio,
         fim: response.fim,
         nomeUser: response.nomeUser,
@@ -50,21 +50,16 @@ module.exports = {
     console.log("Emprestimo updated: " + emprestimo);
 
     // Save Emprestimo in the database
-    emprestimo.save()
+    Emprestimo.findByIdAndUpdate({ _id: emprestimo._id },{ estado: emprestimo.estado })
     .then(data => {
-        var evento = new UserEvent({
-          emprestimo: data,
-          timestamp: new Date(),
-          eventType: eventType
-        });
-        evento.save()
-        .then(data2 => {
-            Send.sendFanout(data, 'EMPRESTIMO_CREATED'); // to GE_Query
-        }).catch(err2 => {
-            console.log(" Erro a guardar evento na DB! " + err.message);
-        });
-    }).catch(err => {
-        console.log("Erro a guardar emprestimo na DB! " + err.message);
+      evento.save()
+      .then(data2 => {
+          Send.sendFanout(emprestimo, 'EMPRESTIMO_CREATED'); // to GE_Query
+      }).catch(err2 => {
+          console.log(" Erro a guardar evento na DB! " + err2.message);
+      });
+  }).catch(err => {
+      console.log("Erro a guardar emprestimo na DB! " + err.message);
     });
   },
 
