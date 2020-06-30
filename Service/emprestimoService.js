@@ -15,7 +15,7 @@ module.exports = {
         });
         evento.save()
         .then(data2 => {
-            Send.sendFanout(data, "EMPRESTIMO_PENDING"); // to GE_Query
+            Send.sendFanout(data, 'EMPRESTIMO_PENDING'); // to GE_Query
         }).catch(err2 => {
             console.log("1");
             console.log("Erro a guardar evento na DB!");
@@ -59,7 +59,7 @@ module.exports = {
         });
         evento.save()
         .then(data2 => {
-            Send.sendFanout(data, "EMPRESTIMO_CREATED"); // to GE_Query
+            Send.sendFanout(data, 'EMPRESTIMO_CREATED'); // to GE_Query
         }).catch(err2 => {
             console.log(" Erro a guardar evento na DB! " + err.message);
         });
@@ -83,7 +83,7 @@ module.exports = {
         evento.save()
         .then(data2 => {
             console.log("Empréstimo updated: " + JSON.stringify(data));
-            Send.sendFanout(emprestimoJSON, "CLOSE_EMPRESTIMO"); // to GE_Query
+            Send.sendFanout(emprestimoJSON, 'CLOSE_EMPRESTIMO'); // to GE_Query
         }).catch(err2 => {
             console.log("Erro ao guardar evento na DB! " + err.message);
         });
