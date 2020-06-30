@@ -39,7 +39,7 @@ module.exports = {
 
     var eventType = 'Create';
 
-    if (estado==='Cancelado') eventType = 'Canceled';
+    if (emprestimo.estado==='Cancelado') eventType = 'Canceled';
     
     var evento = new UserEvent({
       emprestimo: emprestimo,
