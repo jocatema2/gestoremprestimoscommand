@@ -26,7 +26,7 @@ module.exports = {
               console.log("A receber evento: " + response.eventType);
               switch(response.eventType) {
                 case 'HAS_AUTHORIZATION_EMPRESTIMO':
-                  Service.createEmprestimoDefinitivo(response);
+                  Service.createEmprestimoDefinitivo(response, 'Ativo');
                   break;
                 case 'ERROR_AUTHORIZATION_EMPRESTIMO':
                     Service.createEmprestimoDefinitivo(response, 'Cancelado');

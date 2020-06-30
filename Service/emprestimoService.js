@@ -26,7 +26,7 @@ module.exports = {
     });
   },
 
-  createEmprestimoDefinitivo : function(response) {
+  createEmprestimoDefinitivo : function(response, estadoRecebido) {
 
     var emprestimo = new Emprestimo({
         idEmp: response._id,
@@ -34,12 +34,13 @@ module.exports = {
         fim: response.fim,
         nomeUser: response.nomeUser,
         tituloObra: response.tituloObra,
-        estado: 'Ativo'
+        estado: estadoRecebido
     });
 
     var eventType = 'Create';
 
     if (emprestimo.estado==='Cancelado') eventType = 'Canceled';
+    if (estado==='Ativo') eventType = 'Create';
     
     var evento = new UserEvent({
       emprestimo: emprestimo,
