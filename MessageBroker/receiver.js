@@ -4,8 +4,6 @@ var amqp = require('amqplib/callback_api');
 
 const gestorEmprestimos_queue = "GestorEmprestimosCommand_Queue";
 
-const exchange = "GestorEmprestimosCommand_exchange";
-
 module.exports = {
   executeRabbitReceiver : function() {
     amqp.connect('amqp://srvbwpty:jT30ovrtxQanxJEh2qBNQ-p8mAzex7iy@cat.rmq.cloudamqp.com/srvbwpty', function(error0, connection) {
@@ -27,10 +25,10 @@ module.exports = {
               var response = JSON.parse(msg.content.toString());
               console.log("A receber evento: " + response.eventType);
               switch(response.eventType) {
-                case "HAS_AUTHORIZATION_EMPRESTIMO":
+                case 'HAS_AUTHORIZATION_EMPRESTIMO':
                   Service.createEmprestimoDefinitivo(response);
                   break;
-                case "ERROR_AUTHORIZATION_EMPRESTIMO":
+                case 'ERROR_AUTHORIZATION_EMPRESTIMO':
                     Service.createEmprestimoDefinitivo(response, 'Cancelado');
                     break;
                 default:
