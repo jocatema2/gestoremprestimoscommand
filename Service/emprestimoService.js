@@ -37,8 +37,6 @@ module.exports = {
         estado: estadoRecebido
     });
 
-    var eventType = 'Create';
-
     if (emprestimo.estado==='Cancelado') eventType = 'Canceled';
     if (estado==='Ativo') eventType = 'Create';
     
