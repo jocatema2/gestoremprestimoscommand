@@ -38,7 +38,7 @@ module.exports = {
     });
 
     if (emprestimo.estado==='Cancelado') eventType = 'Canceled';
-    if (estado==='Ativo') eventType = 'Create';
+    if (emprestimo.estado==='Ativo') eventType = 'Create';
     
     var evento = new UserEvent({
       emprestimo: emprestimo,
